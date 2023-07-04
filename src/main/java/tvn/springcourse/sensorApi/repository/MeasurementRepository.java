@@ -6,4 +6,5 @@ import tvn.springcourse.sensorApi.model.Measurement;
 
 @Repository
 public interface MeasurementRepository extends JpaRepository<Measurement, Integer> {
+    int countByRainingTrue();
 }
