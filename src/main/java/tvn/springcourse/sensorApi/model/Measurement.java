@@ -4,8 +4,10 @@ package tvn.springcourse.sensorApi.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -18,17 +20,20 @@ public class Measurement {
     private int id;
 
     @Column(name = "raining")
-    @NotEmpty(message = "The \"rain\" flag cannot be empty")
-    private boolean raining;
+    @NotNull
+    private Boolean raining;
 
     @Column(name = "temperature_value")
-    @NotEmpty
+    @NotNull
     @Min(value = -100)
     @Max(value = 100)
-    private float temperatureValue;
+    private Float value;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "sensor_id", referencedColumnName = "id")
-    @NotEmpty(message = "Sensor cant be empty")
+    @NotNull(message = "Sensor cant be empty")
     private Sensor sensor;
+
+    @Column(name = "registration_date")
+    private LocalDateTime registrationDate;
 }
