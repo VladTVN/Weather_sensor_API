@@ -45,7 +45,7 @@ public class SensorsController {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setTimestamp(System.currentTimeMillis());
-        return new ResponseEntity<>(errorResponse,HttpStatus.OK);
+        return new ResponseEntity<>(errorResponse,HttpStatus.BAD_REQUEST);
     }
 
 
